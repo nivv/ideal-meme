@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Cache;
+use Illuminate\Contracts\Cache\Repository;
 
 class ArticlesController extends Controller
 {
@@ -12,9 +12,11 @@ class ArticlesController extends Controller
         //$this->cache = $cache;
     }
 
-    public function index()
+    public function index(Repository $cache)
     {
-        return 'röven';
+        return $cache->rememberForever('debug', function () {
+            return mt_rand(1, 10);
+        });
     }
     /**
      * Retrieve the user for the given ID.
