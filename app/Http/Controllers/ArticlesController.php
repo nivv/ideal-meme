@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Cache\Repository as Cache;
+use Cache;
 
 class ArticlesController extends Controller
 {
@@ -12,9 +12,9 @@ class ArticlesController extends Controller
         //$this->cache = $cache;
     }
 
-    public function index(Cache $cache)
+    public function index()
     {
-        $value = $cache->remember('articles', 5, function () {
+        $value = Cache::remember('articles', 5, function () {
             return Article::all();
         });
         return $value;
