@@ -15,7 +15,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $value = Cache::remember('articles', 5, function() {
+        $value = Cache::remember('articles', 5, function () {
             return Article::all();
         });
         return $value;
@@ -29,5 +29,10 @@ class ArticlesController extends Controller
     public function show($id)
     {
         return Article::findOrFail($id);
+    }
+
+    public function info()
+    {
+        return phpinfo();
     }
 }

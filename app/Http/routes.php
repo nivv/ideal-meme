@@ -18,3 +18,7 @@ $app->get('articles/{id}', [
 $app->get('articles', [
     'as' => 'articles', 'uses' => 'ArticlesController@index'
 ]);
+
+$app->get('info', [
+    'as' => 'info', 'uses' => 'ArticlesController@info'
+]);
