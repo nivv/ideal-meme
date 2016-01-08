@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use Illuminate\Contracts\Cache\Repository;
 use Cache;
+use App\Article;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Cache\Repository;
 
 class ArticlesController extends Controller
 {
-    public function __construct()
+    public function __construct(Article $article)
     {
-        //$this->cache = $cache;
+        $this->article = $article;
     }
+
 
     public function index()
     {
         $value = Cache::remember('articles', 5, function () {
-            return Article::all();
+            return DB::table('articles')->get();
         });
         return $value;
     }
