@@ -14,7 +14,6 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        Cache::store('redis')->put('bar', 'baz', 10);
         return 'röven';
     }
     /**
