@@ -7,7 +7,7 @@ use Illuminate\Cache\RedisStore;
 
 class ArticlesController extends Controller
 {
-    public function __construct(RedisStore $cache)
+    public function __construct(\Illuminate\Cache\Repository $cache)
     {
         $this->cache = $cache;
     }
