@@ -26,5 +26,11 @@
             "tests/",
             "database/"
         ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "github-oauth": {
+            "github.com": "90b39831f76e003f5ed1b720f3c664c7bedbb392"
+        }
     }
 }
