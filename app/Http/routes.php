@@ -11,6 +11,10 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+$app->get('articles/{id}', [
+    'as' => 'articles', 'uses' => 'ArticlesController@show'
+]);
+
+$app->get('articles', [
+    'as' => 'articles', 'uses' => 'ArticlesController@index'
+]);
