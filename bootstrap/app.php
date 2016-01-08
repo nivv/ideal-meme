@@ -81,7 +81,9 @@ $app->singleton(
 $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+  $app->singleton('cache.store', function () {
+             return $app->loadComponent('cache', 'Illuminate\Cache\CacheServiceProvider', 'cache.store');
+   });
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -96,5 +98,6 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 });
+
 
 return $app;

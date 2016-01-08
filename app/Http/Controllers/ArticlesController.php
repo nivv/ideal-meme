@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Contracts\Cache\Repository;
+use Cache;
 
 class ArticlesController extends Controller
 {
@@ -12,10 +13,10 @@ class ArticlesController extends Controller
         //$this->cache = $cache;
     }
 
-    public function index(Repository $cache)
+    public function index()
     {
-        return $cache->rememberForever('debug', function () {
-            return mt_rand(1, 10);
+        $value = Cache::remember('articles', 5, function() {
+            return Article::all();
         });
     }
     /**
