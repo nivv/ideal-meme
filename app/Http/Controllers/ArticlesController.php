@@ -8,7 +8,10 @@ class ArticlesController extends Controller
 {
     public function index()
     {
-        return Article::all();
+        $value = \Illuminate\Support\Facades\Cache::remember('articles', 5, function () {
+            return Article::all();
+        });
+        return $value;
     }
     /**
      * Retrieve the user for the given ID.
