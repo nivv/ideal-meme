@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Article;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Cache\Repository;
 
 class ArticlesController extends Controller
@@ -17,10 +17,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $value = Cache::remember('articles', 5, function () {
-            return DB::table('articles')->get();
-        });
-        return $value;
+        return $this->article->all();
     }
     /**
      * Retrieve the user for the given ID.
@@ -30,7 +27,7 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        return Article::findOrFail($id);
+        return $this->article->findOrFail($id);
     }
 
     public function info()
