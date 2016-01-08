@@ -17,7 +17,7 @@ class ArticlesController extends Controller
         $value = Cache::remember('articles', 5, function () {
             return Article::all();
         });
-        return $value;
+        return 'röven';
     }
     /**
      * Retrieve the user for the given ID.
