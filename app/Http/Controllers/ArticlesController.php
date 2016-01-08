@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Cache\RedisStore;
+use Illuminate\Cache\Repository as Cache;
 
 class ArticlesController extends Controller
 {
-    public function __construct(\Illuminate\Cache\Repository $cache)
+    public function __construct(Cache $cache)
     {
         $this->cache = $cache;
     }
