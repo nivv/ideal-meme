@@ -14,9 +14,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $value = Cache::remember('articles', 5, function () {
-            return Article::all();
-        });
+        Cache::store('redis')->put('bar', 'baz', 10);
         return 'röven';
     }
     /**
