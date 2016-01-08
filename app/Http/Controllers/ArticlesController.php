@@ -7,14 +7,14 @@ use Illuminate\Cache\Repository as Cache;
 
 class ArticlesController extends Controller
 {
-    public function __construct(Cache $cache)
+    public function __construct()
     {
-        $this->cache = $cache;
+        //$this->cache = $cache;
     }
 
-    public function index()
+    public function index(Cache $cache)
     {
-        $value = $this->cache->remember('articles', 5, function () {
+        $value = $cache->remember('articles', 5, function () {
             return Article::all();
         });
         return $value;
